@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+}
+
+.colors {
+    width: 3em;
+    margin: 1em;
+    float: left;
+}
+
+.game {
+    width: 5em;
+    margin: 1em;
+    float: left;
+}
+
+.color {
+    float: left;
+    width: 1em;
+    height: 1em;
+}
+
+.red {
+    background: red;
+}
+
+.violet {
+    background: violet;
+}
+
+.blue {
+    background: blue;
+}
+
+.green {
+    background: green;
+}
+
+.yellow {
+    background: yellow;
+}
+
+.orange {
+    background: orange;
+}
