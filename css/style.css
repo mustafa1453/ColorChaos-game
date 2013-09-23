@@ -1,6 +1,6 @@
 body {
-    margin: 0;
-    background: rgba(0,0,0,0.03);
+    margin: 1em;
+    background: rgba(0,0,0,0.05);
 }
 
 .title {
@@ -16,17 +16,15 @@ body {
 
 .colors {
     width: 6em;
-    margin: 1em;
     float: left;
 }
 
-.refresh {
+.turns {
     clear: both;
 }
 
 .game {
     width: 10em;
-    margin: 1em;
     float: left;
 }
 
@@ -92,5 +90,4 @@ input[name="complexity"] + label {
     line-height: 40px;
     text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
     display: inline;
-    margin: 0 10px 0 20px;
 }
