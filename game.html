@@ -9,40 +9,64 @@
     <script src="js/custom/game.js"></script>
 </head>
 <body>
-<div class="colors">
-    <div class="color red"></div>
-    <div class="color blue"></div>
-    <div class="color orange"></div>
-    <div class="color violet"></div>
-    <div class="color green"></div>
-    <div class="color yellow"></div>
+<div class="title">Color Chaos Game</div>
+<div class="input">
+    <div class="colors">
+        <div class="color red"></div>
+        <div class="color blue"></div>
+        <div class="color orange"></div>
+        <div class="color violet"></div>
+        <div class="color green"></div>
+        <div class="color yellow"></div>
+    </div>
+    <div class="refresh">Restart the game.</div>
+    <div class="rules rus" style="display: none;">Заполните поле одним цветом за ограниченое число ходов.
+    Игра начинаеться с верхней левой клетки.
+    Выберите цвет, нажав на один из квадратов слева, и клетки окрасяться этим цветом - так вы присоедините соседние клетки той же окраски.
+    Захватить поле нужно за минимальное число ходов.
+    </div>
+    <div class="rules eng">
+    Fill the board with one color within the allowed steps.
+    Game starts from the top left cell.
+    Select a color by clicking on one of the squares on the left and the cells will change color to selected - so you can connect neighboring cells of the same color.
+    Grab the box to the minimum number of moves.
+    </div>
+    <div class="chooser-complexity">
+        <span class="button-label">Field:</span>
+        <input type="radio" name="complexity" value="Small" id="s-field" checked>
+        <label for="s-field">Small</label>
+        <input type="radio" name="complexity" value="Large" id="h-field">
+        <label for="h-field">Large</label>
+    </div>
 </div>
-<div class="game">
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
+<div class="game-section">
+    <div class="game">
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+    </div>
 </div>
 </body>
 </html>

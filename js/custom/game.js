@@ -16,7 +16,7 @@ $(function() {
     var gameColor = $(".game .color");
     var chooser = $(".colors .color");
     var gameArray = new Array();
-    var iMax = 5;
+    var iMax = 5; // 14 for small. 28 for large field.
     for (var i = 0; i < iMax; i++) {
         gameArray[i] = new Array();
     }
