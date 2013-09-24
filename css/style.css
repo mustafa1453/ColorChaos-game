@@ -14,6 +14,11 @@ body {
     float: left;
 }
 
+.game-section {
+    width: 75%;
+    float: left;
+}
+
 .colors {
     width: 6em;
     float: left;
@@ -24,14 +29,19 @@ body {
 }
 
 .game {
-    width: 10em;
-    float: left;
+    width: 28em;
+    margin: 0 auto;
 }
 
 .color {
     float: left;
     width: 2em;
     height: 2em;
+}
+
+.color.big {
+    width: 1em;
+    height: 1em;
 }
 
 .red {
@@ -56,6 +66,28 @@ body {
 
 .orange {
     background: orange;
+}
+
+.complexity {
+    float: left;
+    line-height: 35px;
+    background: rgba(183, 172, 172, .7);
+    margin-right: 1em;
+    width: 70px;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    box-shadow: 0px 1px 1px rgba(255,255,255,0.3);
+}
+
+.complexity.active {
+    float: left;
+    line-height: 35px;
+    margin-right: 1em;
+    width: 70px;
+    text-align: center;
+    color: #fff;
+    background: rgba(34, 35, 36, .7);
 }
 
 input[name="complexity"] {
@@ -87,7 +119,80 @@ input[name="complexity"] + label {
 .button-label {
     font-weight: bold;
     color: rgb(108, 108, 108);
-    line-height: 40px;
+    line-height: 35px;
     text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
-    display: inline;
+    float: left;
+    margin-right: 1em;
 }
+
+.rules, .refresh {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    clear: both;
+}
+
+.btn {
+    width: 5em;
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #bbb;
+    border-bottom-color: #a2a2a2;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#ffe6e6e6',GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+}
+
+.btn-inverse {
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-color: #363636;
+    background-image: -moz-linear-gradient(top,#444,#222);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#444),to(#222));
+    background-image: -webkit-linear-gradient(top,#444,#222);
+    background-image: -o-linear-gradient(top,#444,#222);
+    background-image: linear-gradient(to bottom,#444,#222);
+    background-repeat: repeat-x;
+    border-color: #222 #222 #000;
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444',endColorstr='#ff222222',GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn:hover {
+    text-decoration: none;
+    background-position: 0 -15px;
+    -webkit-transition: background-position .1s linear;
+    -moz-transition: background-position .1s linear;
+    -o-transition: background-position .1s linear;
+    transition: background-position .1s li
+}
+
+.btn:active {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+    -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+}
+
+.btn-inverse:hover, .btn-inverse:active {
+    color: #fff;
+    background-color: #222;
+}
+
+.hidden {
+    display: none;
+}
+
