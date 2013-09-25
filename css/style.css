@@ -69,6 +69,12 @@ body {
     float: right;
 }
 
+.caravan {
+    clear: both;
+    margin-top: .5em;
+    float: right;
+}
+
 .color {
     float: left;
     width: 2em;

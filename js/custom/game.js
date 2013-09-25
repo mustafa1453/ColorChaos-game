@@ -17,6 +17,22 @@ $(function() {
         }).showModal();
     });
 
+    var caravans = 0;
+    $('#alert-caravan').click(function(e) {
+        caravans++;
+        var image = Math.floor(Math.random() * 11);
+        $.fn.SimpleModal({
+            hideHeader: true,
+            closeButton: false,
+            btn_ok: 'Close window',
+            width: 400,
+            model: 'alert',
+            contents: '<img style="max-height: 200px;" src="img/' + image + '.jpg">' +
+                '<p>It\'s a wonderfull game where you can rob the caravan. You have robed the caravan.</p>' +
+                "<p>Number of robed caravans: " + caravans + ".</p>"
+        }).showModal();
+    });
+
     var colors = ["red", "blue", "orange", "violet", "green", "yellow"];
     var gameArray;
     var size = 14;
