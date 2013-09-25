@@ -2,6 +2,30 @@
 <html>
 <head>
     <title>ColorChaos Game</title>
+    <style>
+        @font-face {
+            font-family: ubuntul;
+            src: url('fonts/Ubuntu-L.ttf');
+        }
+        @font-face {
+            font-family: ubuntur;
+            src: url('fonts/Ubuntu-R.ttf');
+        }
+        @font-face {
+            font-family: ubuntum;
+            src: url('fonts/Ubuntu-M.ttf');
+        }
+        @font-face {
+            font-family: ubuntub;
+            src: url('fonts/Ubuntu-B.ttf');
+        }
+    </style>
+    <!--<style>
+        @font-face { font-family: JuneBug; src: url('JUNEBUG.TTF'); }
+        h1 {
+            font-family: JuneBug
+        }
+    </style>-->
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/simplemodal.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -11,8 +35,8 @@
     <script src="js/custom/game.js"></script>
 </head>
 <body>
-<div class="title">Color Chaos Game</div>
 <div class="main">
+    <div class="title">Color Chaos Game</div>
     <div class="input">
         <div class="colors">
             <div class="color red"></div>
@@ -38,9 +62,7 @@
             <div data-type="large" class="complexity">Large</div>
         </div>
     </div>
-    <div class="game-section">
-        <div class="game"></div>
-    </div>
+    <div class="game"></div>
 </div>
 </body>
 </html>

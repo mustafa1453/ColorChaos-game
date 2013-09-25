@@ -19,7 +19,9 @@ $(function() {
 
     var colors = ["red", "blue", "orange", "violet", "green", "yellow"];
     var gameArray;
-    var size = 14; // 14 for small. 28 for large field.
+    var size = 14;
+    var turns = 0;
+    var maxTurns = 25;
     init(size);
 
     $(".refresh").click(function() {
@@ -30,21 +32,35 @@ $(function() {
         var complex = $(this);
         complex.parent().find(".complexity").removeClass("active");
         complex.addClass("active");
-        size = complex.data("type") === "small" ? 14 : 28;
+        size = complex.data("type") === "small" ? 14 : 28; // 14 for small. 28 for large field.
+        maxTurns = size == 14 ? 25 : 50; // 25 for small. 50 for large field.
         init(size);
     })
 
     $(".colors .color").click(function() {
+        if (turns < maxTurns && !isWin(gameArray)) {
+            turns += 1;
+            $(".turns .button-label").text("Turns: " + turns + "/" + maxTurns);
+        }
+        else if (!isWin(gameArray))  {
+            $.fn.SimpleModal({
+                hideHeader: true,
+                closeButton: false,
+                btn_ok: 'Close window',
+                width: 600,
+                model: 'alert',
+                contents: 'You lose. Do not get discouraged. Please try again.'
+            }).showModal();
+        }
         var gameColor = $(".game .color");
-        var oldColor = $(gameColor[0]).attr("class");
-        var colorName = oldColor.replace("color ", "").split(" ").filter(function(el) {
+        var oldColorName = $(gameColor[0]).attr("class").replace("color ", "").split(" ").filter(function(el) {
             if (colors.indexOf(el) != -1) {
                 return el;
             }
         })[0];
-        var colorIndex = colors.indexOf(colorName);
-        var color = $(this).attr("class");
-        var newColorName = color.replace("color ", "").split(" ").filter(function(el) {
+        var oldColorIndex = colors.indexOf(oldColorName);
+        var newColor = $(this).attr("class");
+        var newColorName = newColor.replace("color ", "").split(" ").filter(function(el) {
             if (colors.indexOf(el) != -1) {
                 return el;
             }
@@ -52,16 +68,29 @@ $(function() {
         var newColorIndex = colors.indexOf(newColorName);
         var tmpArray = clone(gameArray);
         gameColor.each(function(index, element) {
-            if ($(this).attr("class") === oldColor) {
+            if ($(this).attr("class").indexOf(oldColorName) >= 0) {
                 var x = Math.floor(index / size);
                 var y = index % size;
-                if (isNear(clone(gameArray), x, y, colorIndex)) {
+                if (isNear(clone(gameArray), x, y, oldColorIndex)) {
                     tmpArray[x][y] = newColorIndex;
-                    $(this).removeClass().addClass(color);
+                    $(this).removeClass().addClass(newColor);
+                    if (size > 14) {
+                        $(this).addClass("big");
+                    }
                 }
             }
         });
         gameArray = clone(tmpArray);
+        if (isWin(gameArray) && turns <= maxTurns) {
+            $.fn.SimpleModal({
+                hideHeader: true,
+                closeButton: false,
+                btn_ok: 'Close window',
+                width: 600,
+                model: 'alert',
+                contents: 'You win. Our congratulations.'
+            }).showModal();
+        }
     });
 
     function isNear(matrix, y, x, color) {
@@ -81,6 +110,8 @@ $(function() {
     }
 
     function init(size) {
+        turns = 0;
+        $(".turns .button-label").text("Turns: " + turns + "/" + maxTurns);
         gameArray = new Array();
         for (var i = 0; i < size; i++) {
             gameArray[i] = new Array();
@@ -98,6 +129,18 @@ $(function() {
             gameArray[Math.floor(index / size)][index % size] = color;
             $(this).addClass(colors[color]);
         });
+    }
+
+    function isWin(matrix) {
+        var temp = matrix[0][0];
+        for (var row = 0; row < matrix.length; row++) {
+            for (var cell = 0; cell < matrix[row].length; cell++) {
+                if (temp != matrix[row][cell]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     function clone(original) {
