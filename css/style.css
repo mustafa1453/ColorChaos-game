@@ -103,6 +103,20 @@ body {
         inset 0px 0px 0px rgba(163,75,163,0.9);
     margin-right: 3px;
     margin-bottom: 3px;
+    transition:width 5s;
+    -webkit-transition:width 5s;
+}
+
+.colors .color:hover {
+    margin-top: -3px;
+    margin-bottom: 6px;
+}
+
+.colors .color:active {
+    outline: 0;
+    -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+    -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
 }
 
 .color.big {
