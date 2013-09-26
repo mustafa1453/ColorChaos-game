@@ -10,11 +10,17 @@ body {
     font-weight: bold;
     background-color: #666666;
     -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
     color: transparent;
     text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+}
 
+.title.not-chrome {
+    background-color: inherit;
+    color: #fff;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;
+    letter-spacing: 5px;
+    /*color: #fff;
+    text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;*/
 }
 
 .main {
@@ -73,6 +79,11 @@ body {
     float: right;
 }
 
+.chooser-complexity .button-label{
+    width: 38px;
+    margin-right: 8px;
+}
+
 .caravan {
     clear: both;
     margin-top: .5em;
@@ -104,9 +115,12 @@ body {
     background: -webkit-gradient(
         linear, left top, left bottom,
         from(#ffffff),
-        color-stop(0.50, #d95f5f),
+        color-stop(0.50, #cf3636),
         color-stop(0.50, #cf3636),
         to(#800000));
+    background: -moz-linear-gradient(top, #ffffff, #cf3636 50%, #cf3636 50%, #800000);
+    background: -ms-linear-gradient(top, #ffffff, #cf3636 50%, #cf3636 50%, #800000);
+    background: -o-linear-gradient(top, #ffffff, #cf3636 50%, #cf3636 50%, #800000);
 }
 
 .colors .violet {
@@ -117,6 +131,9 @@ body {
         color-stop(0.50, #77008f),
         color-stop(0.50, #6c0087),
         to(#4f0063));
+    background: -moz-linear-gradient(top, #ffffff, #77008f 50%, #6c0087 50%, #4f0063);
+    background: -ms-linear-gradient(top, #ffffff, #77008f 50%, #6c0087 50%, #4f0063);
+    background: -o-linear-gradient(top, #ffffff, #77008f 50%, #6c0087 50%, #4f0063);
 }
 
 .colors .blue {
@@ -127,6 +144,9 @@ body {
         color-stop(0.50, #00458f),
         color-stop(0.50, #004887),
         to(#001463));
+    background: -moz-linear-gradient(top, #ffffff, #00458f 50%, #004887 50%, #001463);
+    background: -ms-linear-gradient(top, #ffffff, #00458f 50%, #004887 50%, #001463);
+    background: -o-linear-gradient(top, #ffffff, #00458f 50%, #004887 50%, #001463);
 }
 
 .colors .green {
@@ -137,6 +157,9 @@ body {
         color-stop(0.50, #008f21),
         color-stop(0.50, #1b8700),
         to(#006300));
+    background: -moz-linear-gradient(top, #ffffff, #1b8700 50%, #1b8700 50%, #006300);
+    background: -ms-linear-gradient(top, #ffffff, #1b8700 50%, #1b8700 50%, #006300);
+    background: -o-linear-gradient(top, #ffffff, #1b8700 50%, #1b8700 50%, #006300);
 }
 
 .colors .yellow {
@@ -147,6 +170,9 @@ body {
         color-stop(0.50, #f7ff00),
         color-stop(0.50, #e1ff00),
         to(#ccff00));
+    background: -moz-linear-gradient(top, #ffffff, #e1ff00 50%, #e1ff00 50%, #ccff00);
+    background: -ms-linear-gradient(top, #ffffff, #e1ff00 50%, #e1ff00 50%, #ccff00);
+    background: -o-linear-gradient(top, #ffffff, #e1ff00 50%, #e1ff00 50%, #ccff00);
 }
 
 .colors .orange {
@@ -157,6 +183,9 @@ body {
         color-stop(0.50, #ffa200),
         color-stop(0.50, #ffaa00),
         to(#964e00));
+    background: -moz-linear-gradient(top, #ffffff, #ffaa00 50%, #ffaa00 50%, #964e00);
+    background: -ms-linear-gradient(top, #ffffff, #ffaa00 50%, #ffaa00 50%, #964e00);
+    background: -o-linear-gradient(top, #ffffff, #ffaa00 50%, #ffaa00 50%, #964e00);
 }
 
 .red {

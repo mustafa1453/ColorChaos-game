@@ -2,6 +2,10 @@
  * Created by mustafa1453 on 9/22/13.
  */
 $(function() {
+    if (navigator.userAgent.indexOf('Chrome') === -1){
+        $(".title").addClass("not-chrome");
+    }
+
     $('#alert-noheader').click(function(e) {
         $.fn.SimpleModal({
             hideHeader: true,
@@ -38,6 +42,7 @@ $(function() {
     var size = 14;
     var turns = 0;
     var maxTurns = 25;
+    var indexes;
     init(size);
 
     $(".refresh").click(function() {
@@ -67,6 +72,8 @@ $(function() {
                 model: 'alert',
                 contents: 'You lose. Do not get discouraged. Please try again.'
             }).showModal();
+            init(size);
+            return;
         }
         var gameColor = $(".game .color");
         var oldColorName = $(gameColor[0]).attr("class").replace("color ", "").split(" ").filter(function(el) {
@@ -87,7 +94,10 @@ $(function() {
             if ($(this).attr("class").indexOf(oldColorName) >= 0) {
                 var x = Math.floor(index / size);
                 var y = index % size;
-                if (isNear(clone(gameArray), x, y, oldColorIndex)) {
+                if (indexes.indexOf(index) >= 0 || isNear(clone(gameArray), x, y, oldColorIndex)) {
+                    if (indexes.indexOf(index) === -1) {
+                        indexes.push(index);
+                    }
                     tmpArray[x][y] = newColorIndex;
                     $(this).removeClass().addClass(newColor);
                     if (size > 14) {
@@ -119,14 +129,9 @@ $(function() {
         return path.length > 0;
     }
 
-    function showMatrix(matrix) {
-        for (row in matrix) {
-            console.log(matrix[row]);
-        }
-    }
-
     function init(size) {
         turns = 0;
+        indexes = new Array()
         $(".turns .button-label").text("Turns: " + turns + "/" + maxTurns);
         gameArray = new Array();
         for (var i = 0; i < size; i++) {
