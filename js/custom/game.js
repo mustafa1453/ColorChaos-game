@@ -6,36 +6,7 @@ $(function() {
         $(".title").addClass("not-chrome");
     }
 
-    $('#alert-noheader').click(function(e) {
-        $.fn.SimpleModal({
-            hideHeader: true,
-            closeButton: false,
-            btn_ok: 'Close window',
-            width: 600,
-            model: 'alert',
-            contents: 'Fill the board with one color within the allowed steps.' +
-                'Game starts from the top left cell. ' +
-                'Select a color by clicking on one of the squares on the left and ' +
-                'the cells will change color to selected - so you can connect neighboring cells of the same color. ' +
-                'Grab the box to the minimum number of moves.'
-        }).showModal();
-    });
-
     var caravans = 0;
-    $('#alert-caravan').click(function(e) {
-        caravans++;
-        var image = Math.floor(Math.random() * 11);
-        $.fn.SimpleModal({
-            hideHeader: true,
-            closeButton: false,
-            btn_ok: 'Close window',
-            width: 400,
-            model: 'alert',
-            contents: '<img style="max-height: 200px;" src="img/' + image + '.jpg">' +
-                '<p>It\'s a wonderfull game where you can rob the caravan. You have robed the caravan.</p>' +
-                "<p>Number of robed caravans: " + caravans + ".</p>"
-        }).showModal();
-    });
 
     var colors = ["red", "blue", "orange", "violet", "green", "yellow"];
     var gameArray;
@@ -43,6 +14,7 @@ $(function() {
     var turns = 0;
     var maxTurns = 25;
     var indexes;
+    var lang = 'eng';
     init(size);
 
     $(".refresh").click(function() {
@@ -51,9 +23,10 @@ $(function() {
 
     $(".complexity").click(function() {
         var complex = $(this);
+        var type = complex.data("type");
         complex.parent().find(".complexity").removeClass("active");
-        complex.addClass("active");
-        size = complex.data("type") === "small" ? 14 : 28; // 14 for small. 28 for large field.
+        complex.parent().find('.complexity[data-type="' + type +'"]').addClass("active");
+        size = type === "small" ? 14 : 28; // 14 for small. 28 for large field.
         maxTurns = size == 14 ? 25 : 50; // 25 for small. 50 for large field.
         init(size);
     })
@@ -61,17 +34,20 @@ $(function() {
     $(".colors .color").click(function() {
         if (turns < maxTurns && !isWin(gameArray)) {
             turns += 1;
-            $(".turns .button-label").text("Turns: " + turns + "/" + maxTurns);
+            $(".turns .button-label[data-lang='eng']").text("Turns: " + turns + "/" + maxTurns);
+            $(".turns .button-label[data-lang='rus']").text("Ходы: " + turns + "/" + maxTurns);
         }
         else if (!isWin(gameArray))  {
             $.fn.SimpleModal({
                 hideHeader: true,
                 closeButton: false,
-                btn_ok: 'Close window',
+                btn_ok: 'Close',
                 width: 600,
                 model: 'alert',
-                contents: 'You lose. Do not get discouraged. Please try again.'
+                contents: '<p data-lang="eng">You lose. Do not get discouraged. Please try again.</p>' +
+                    '<p data-lang="rus">Вы проиграли. Не расстраивайтесь, и попробуйте еще раз.</p>'
             }).showModal();
+            translate();
             init(size);
             return;
         }
@@ -111,13 +87,75 @@ $(function() {
             $.fn.SimpleModal({
                 hideHeader: true,
                 closeButton: false,
-                btn_ok: 'Close window',
+                btn_ok: 'Close',
                 width: 600,
                 model: 'alert',
-                contents: 'You win. Our congratulations.'
+                contents: '<p data-lang="eng">You win. Our congratulations.</p>' +
+                    '<p data-lang="rus">Вы победили. Наши поздравления.</p>'
             }).showModal();
+            translate();
         }
     });
+
+    $('[data-lang="rus"]').hide();
+
+    $('.lang div').click(function() {
+        lang = $(this).attr("class");
+        translate();
+    });
+
+    $('.caravan .btn').click(function(e) {
+        caravans++;
+        var image = Math.floor(Math.random() * 11);
+        $.fn.SimpleModal({
+            hideHeader: true,
+            closeButton: false,
+            btn_ok: 'Close',
+            width: 400,
+            model: 'alert',
+            contents: '<img style="max-height: 200px;" src="img/' + image + '.jpg">' +
+                '<p data-lang="eng">It\'s a wonderfull game where you can rob the caravan. You have robed the caravan.</p>' +
+                '<p data-lang="rus">Это чумачечая игра, где вы такоже можете ограбить корован. О, смотрите-ка, еще один попался.</p>' +
+                '<p data-lang="eng">Number of robed caravans: ' + caravans + '.</p>' +
+                '<p data-lang="rus">Количество ограбленых корованов: ' + caravans + '.</p>'
+        }).showModal();
+        translate();
+    });
+
+    $('.rules .btn').click(function(e) {
+        $.fn.SimpleModal({
+            hideHeader: true,
+            closeButton: false,
+            btn_ok: 'Close|Закрыть',
+            width: 600,
+            model: 'alert',
+            contents:
+                '<p data-lang="eng">Fill the board with one color within the allowed steps.' +
+                    'Game starts from the top left cell. ' +
+                    'Select a color by clicking on one of the squares on the left and ' +
+                    'the cells will change color to selected - so you can connect neighboring cells of the same color. ' +
+                    'Grab the box to the minimum number of moves.</p>' +
+                    '<p data-lang="rus">Заполните поле одним цветом за ограниченое количество ходов. ' +
+                    'Игра начинаеться с верхнего левого квадрата. ' +
+                    'Выберете цвет, нажав на один из кругов слева, и квадраты окрасятся этим цветом - ' +
+                    'так вы присоедините соседние квадраты того же цвета. ' +
+                    'Заполнить поле нужно за минимальное число ходов.</p>'
+        }).showModal();
+        translate();
+    });
+
+    function translate() {
+        if (lang == "rus") {
+            $(".simple-modal-footer a").text("Закрыть");
+            $('[data-lang="eng"]').hide();
+            $('[data-lang="rus"]').show();
+        }
+        if (lang == "eng") {
+            $(".simple-modal-footer a").text("Close");
+            $('[data-lang="eng"]').show();
+            $('[data-lang="rus"]').hide();
+        }
+    }
 
     function isNear(matrix, y, x, color) {
         matrix.forEach(function(row, i) {
@@ -132,7 +170,8 @@ $(function() {
     function init(size) {
         turns = 0;
         indexes = new Array()
-        $(".turns .button-label").text("Turns: " + turns + "/" + maxTurns);
+        $(".turns .button-label[data-lang='eng']").text("Turns: " + turns + "/" + maxTurns);
+        $(".turns .button-label[data-lang='rus']").text("Ходы: " + turns + "/" + maxTurns);
         gameArray = new Array();
         for (var i = 0; i < size; i++) {
             gameArray[i] = new Array();

@@ -1,6 +1,35 @@
 body {
-    margin: 1em;
+    margin: 0;
+    padding: 0;
     font-family: ubuntur;
+}
+
+.lang {
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+    margin-bottom: 10px;
+}
+
+.lang div {
+    display: inline-block;
+    width: 16px;
+    height: 11px;
+    margin-right: 1em;
+}
+
+.lang div:hover {
+    border-bottom: 2px solid white;
+}
+
+.eng {
+    background: url("../img/en.png");
+}
+
+.rus {
+    background: url("../img/ru.png");
 }
 
 .title {
@@ -19,8 +48,6 @@ body {
     color: #fff;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;
     letter-spacing: 5px;
-    /*color: #fff;
-    text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;*/
 }
 
 .main {
@@ -80,8 +107,8 @@ body {
 }
 
 .chooser-complexity .button-label{
-    width: 38px;
-    margin-right: 8px;
+    width: 40px;
+    margin-right: 10px;
 }
 
 .caravan {
@@ -230,8 +257,8 @@ body {
     float: left;
     line-height: 35px;
     background: rgba(183, 172, 172, .7);
-    margin-right: 5px;
-    width: 60px;
+    margin-left: 5px;
+    width: 40px;
     text-align: center;
     cursor: pointer;
     color: #fff;
@@ -244,10 +271,6 @@ body {
     text-align: center;
     color: #fff;
     background: rgba(34, 35, 36, .7);
-}
-
-.complexity:last-child {
-    margin-right: 0;
 }
 
 input[name="complexity"] {
@@ -282,7 +305,6 @@ input[name="complexity"] + label {
     line-height: 35px;
     text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
     float: left;
-    margin-right: 10px;
 }
 
 .btn {
@@ -327,10 +349,6 @@ input[name="complexity"] + label {
 .btn:hover {
     text-decoration: none;
     background-position: 0 -15px;
-    -webkit-transition: background-position .1s linear;
-    -moz-transition: background-position .1s linear;
-    -o-transition: background-position .1s linear;
-    transition: background-position .1s li
 }
 
 .btn:active {
@@ -349,4 +367,3 @@ input[name="complexity"] + label {
 .hidden {
     display: none;
 }
-

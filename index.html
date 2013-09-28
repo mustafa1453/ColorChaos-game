@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Simple color game for increase strategic skill.">
+    <meta name="keywords" content="colorchaos, game, mustafa1453, mustafa, smolyankin">
+    <link rel="icon" href="favicon.ico">
+    <title>ColorChaos Game</title>
+    <style>
+        @font-face {
+            font-family: ubuntul;
+            src: url('fonts/Ubuntu-L.ttf');
+        }
+        @font-face {
+            font-family: ubuntur;
+            src: url('fonts/Ubuntu-R.ttf');
+        }
+        @font-face {
+            font-family: ubuntum;
+            src: url('fonts/Ubuntu-M.ttf');
+        }
+        @font-face {
+            font-family: ubuntub;
+            src: url('fonts/Ubuntu-B.ttf');
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/simplemodal.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="js/lib/pathfinding-browser.js"></script>
+    <script src="js/lib/simple-modal.js"></script>
+    <script src="js/custom/game.js"></script>
+</head>
+<body>
+<div class="lang">
+    <div class="eng"> </div>
+    <div class="rus"> </div>
+</div>
+<div class="main">
+    <div class="title">Color Chaos Game</div>
+    <div class="input">
+        <div class="colors">
+            <div class="color red"></div>
+            <div class="color blue"></div>
+            <div class="color orange"></div>
+            <div class="color violet"></div>
+            <div class="color green"></div>
+            <div class="color yellow"></div>
+        </div>
+
+        <div class="turns">
+            <span class="button-label" data-lang="eng">Turns:</span>
+            <span class="button-label" data-lang="rus">Ходы:</span>
+        </div>
+        <div class="refresh">
+            <a class="btn btn-inverse" data-lang="eng">Restart</a>
+            <a class="btn btn-inverse" data-lang="rus">Заново</a>
+        </div>
+        <div class="rules">
+            <a class="btn btn-inverse" data-lang="eng">Rules</a>
+            <a class="btn btn-inverse" data-lang="rus">Правила</a>
+        </div>
+        <div class="chooser-complexity">
+            <div class="button-label" data-lang="eng">Field:</div>
+            <div class="button-label" data-lang="rus">Поле:</div>
+            <div data-type="small" class="complexity active" data-lang="eng">S</div>
+            <div data-type="small" class="complexity active" data-lang="rus">М</div>
+            <div data-type="large" class="complexity" data-lang="eng">L</div>
+            <div data-type="large" class="complexity" data-lang="rus">Б</div>
+        </div>
+        <div class="caravan">
+            <a class="btn btn-inverse" data-lang="eng">Rob the caravan</a>
+            <a class="btn btn-inverse" data-lang="rus">Грабануть корован</a>
+        </div>
+    </div>
+    <div class="game"></div>
+</div>
+<div class="copyright">&copy; 2013 Alex Smolyankin. All rights reserved.</div>
+</body>
+</html>
