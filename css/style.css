@@ -220,13 +220,13 @@ body {
     border: 1px solid #964e00;
     background: -webkit-gradient(
         linear, left top, left bottom,
-        from(#ffffff),
-        color-stop(0.50, #ffa200),
-        color-stop(0.50, #ffaa00),
+        from(#ffaa00),
+        color-stop(0.50, #964e00),
+        color-stop(0.50, #964e00),
         to(#964e00));
-    background: -moz-linear-gradient(top, #ffffff, #ffaa00 50%, #ffaa00 50%, #964e00);
-    background: -ms-linear-gradient(top, #ffffff, #ffaa00 50%, #ffaa00 50%, #964e00);
-    background: -o-linear-gradient(top, #ffffff, #ffaa00 50%, #ffaa00 50%, #964e00);
+    background: -moz-linear-gradient(top, #ffaa00, #964e00 50%, #964e00 50%, #964e00);
+    background: -ms-linear-gradient(top, #ffaa00, #964e00 50%, #964e00 50%, #964e00);
+    background: -o-linear-gradient(top, #ffaa00, #964e00 50%, #964e00 50%, #964e00);
 }
 
 .red {
