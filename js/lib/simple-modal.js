@@ -363,7 +363,7 @@ provides:
             // Update position popup
             var modal = $("#simple-modal"), top = self.options.offsetTop || ($(window).height() - modal.height())/2;
             modal.css({
-                top: top,
+                top: 30,
                 left: (($(window).width() - modal.width())/2)
             });
         },

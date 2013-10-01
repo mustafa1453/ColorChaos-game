@@ -7,7 +7,6 @@ $(function() {
     }
 
     var caravans = 0;
-
     var colors = ["red", "blue", "orange", "violet", "green", "yellow"];
     var gameArray;
     var size = 14;
@@ -15,6 +14,7 @@ $(function() {
     var maxTurns = 25;
     var indexes;
     var lang = 'eng';
+    var db = 'scoreListSmall';
     init(size);
 
     $(".refresh").click(function() {
@@ -27,7 +27,8 @@ $(function() {
         complex.parent().find(".complexity").removeClass("active");
         complex.parent().find('.complexity[data-type="' + type +'"]').addClass("active");
         size = type === "small" ? 14 : 28; // 14 for small. 28 for large field.
-        maxTurns = size == 14 ? 25 : 50; // 25 for small. 50 for large field.
+        maxTurns = size === 14 ? 25 : 50; // 25 for small. 50 for large field.
+        db = size === 14 ? 'scoreListSmall' : 'scoreListBig';
         init(size);
     })
 
@@ -90,8 +91,12 @@ $(function() {
                 btn_ok: 'Close',
                 width: 600,
                 model: 'alert',
-                contents: '<p data-lang="eng">You win. Our congratulations.</p>' +
-                    '<p data-lang="rus">Вы победили. Наши поздравления.</p>'
+                contents: '<div id="save-block"><p data-lang="eng">You win. Our congratulations. You may save your score and time in leaderboard.</p>' +
+                    '<p data-lang="rus">Вы победили. Наши поздравления. Вы можете сохранить результат и время в таблицу лидеров</p>' +
+                    '<input type="text" placeholder="Name" data-lang="eng"/>' +
+                    '<a class="btn btn-inverse save" data-lang="eng">Save</a>' +
+                    '<input type="text" placeholder="Имя" data-lang="rus"/>' +
+                    '<a class="btn btn-inverse save" data-lang="rus">Сохранить</a></div>'
             }).showModal();
             translate();
         }
@@ -215,4 +220,52 @@ $(function() {
             }
         } return newObj;
     }
+
+    var scoreListRef = new Firebase('https://mustafa1453.firebaseio.com/' + db);
+
+    $(".scores div").click(function (e) {
+        var lang = $(this).data("lang");
+        if (lang === "eng") {
+            var contents = "<h3>Leaderboard</h3>" +
+                "<table id=\"leaderboard\"><thead><tr><th>#</th><th>Name</th><th>Time</th>" +
+                "</tr></thead><tbody>";
+        }
+        else {
+            var contents = "<h3>Таблица лидеров</h3>" +
+                "<table id=\"leaderboard\"><thead><tr><th>№</th><th>Имя</th><th>Время</th>" +
+                "</tr></thead><tbody>";
+        }
+        scoreListRef.once('value', function(snapshot) {
+            var smallList = snapshot.val();
+            var num = 1;
+            for (var key in smallList) {
+                num++;
+            }
+            var tbody = $("#leaderboard tbody");
+            for (var key in smallList) {
+                tbody.prepend("<tr><td>" + (--num) + "</td><td>" +smallList[key].name + "</td><td>" + smallList[key].time + "</td></tr>");
+            }
+        });
+        contents += "</tbody></table>";
+        $.fn.SimpleModal({
+            hideHeader: true,
+            closeButton: false,
+            btn_ok: 'Close',
+            width: 600,
+            model: 'alert',
+            contents: contents
+        }).showModal();
+        translate();
+    });
+
+    $(document).on("click", ".save", function() {
+        var lang = $(this).data("lang");
+        var text = '';
+        text = lang == 'eng' ? "<p>Your score has been saved.</p>" : "<p>Ваш счет сохранен.</p>";
+        var input = $('input[data-lang="' + lang + '"]');
+        var name = input.val().toLowerCase();
+        var time = Math.floor(Math.random() * 1000);
+        scoreListRef.push().setWithPriority({ name:name, time:time }, time);
+        input.parent().html(text);
+    });
 });

@@ -88,7 +88,7 @@ body {
     margin: 0.5em 0;
 }
 
-.rules, .refresh {
+.rules, .refresh, .scores {
     margin: 0.5em 0;
     clear: both;
     float: right;
@@ -113,7 +113,6 @@ body {
 
 .caravan {
     clear: both;
-    margin-top: .5em;
     float: right;
 }
 
@@ -366,4 +365,65 @@ input[name="complexity"] + label {
 
 .hidden {
     display: none;
+}
+
+input {
+    margin: 0 0.5em 0 0;
+    line-height: 28px;
+    vertical-align: baseline;
+    padding: 0 0.5em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 4px;
+    outline: 0;
+    outline: thin dotted \9;
+    border-color: #129FEA;
+    float: left;
+}
+
+#leaderboard {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+    color: #777;
+    margin: 0 auto;
+}
+
+#leaderboard thead {
+    background: #e0e0e0;
+    color: #000;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+#leaderboard td, #leaderboard th {
+    border-left: 1px solid #cbcbcb;
+    border-width: 0 0 0 1px;
+    font-size: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: 6px 12px;
+}
+
+#leaderboard td:first-child, #leaderboard th:first-child {
+    border-left-width: 0;
+}
+
+#leaderboard tbody tr {
+    background-color: #f2f2f2;
+}
+
+#leaderboard tbody tr:nth-child(2n+1)  {
+    background-color: transparent;
+}
+
+.simple-modal-body h3 {
+    text-align: center;
+}
+
+body .simple-modal .simple-modal-body div.contents {
+    overflow-y: scroll;
+    max-height: 500px;
 }
