@@ -15,6 +15,7 @@ $(function() {
     var indexes;
     var lang = 'eng';
     var db = 'scoreListSmall';
+    var beginTime = 0, scoreTime = 0;
     init(size);
 
     $(".refresh").click(function() {
@@ -33,6 +34,7 @@ $(function() {
     })
 
     $(".colors .color").click(function() {
+        beginTime = beginTime || new Date().getTime();
         if (turns < maxTurns && !isWin(gameArray)) {
             turns += 1;
             $(".turns .button-label[data-lang='eng']").text("Turns: " + turns + "/" + maxTurns);
@@ -85,6 +87,8 @@ $(function() {
         });
         gameArray = clone(tmpArray);
         if (isWin(gameArray) && turns <= maxTurns) {
+            scoreTime = (new Date().getTime() - beginTime) / 1000;
+            beginTime = 0;
             $.fn.SimpleModal({
                 hideHeader: true,
                 closeButton: false,
@@ -260,12 +264,10 @@ $(function() {
 
     $(document).on("click", ".save", function() {
         var lang = $(this).data("lang");
-        var text = '';
-        text = lang == 'eng' ? "<p>Your score has been saved.</p>" : "<p>Ваш счет сохранен.</p>";
+        var text = lang == 'eng' ? "<p>Your score has been saved.</p>" : "<p>Ваш счет сохранен.</p>";
         var input = $('input[data-lang="' + lang + '"]');
         var name = input.val().toLowerCase();
-        var time = Math.floor(Math.random() * 1000);
-        scoreListRef.push().setWithPriority({ name:name, time:time }, time);
+        scoreListRef.push().setWithPriority({ name:name, time:scoreTime }, scoreTime);
         input.parent().html(text);
     });
 });
