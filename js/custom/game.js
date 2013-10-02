@@ -241,13 +241,28 @@ $(function() {
                 "</tr></thead><tbody>";
         }
         scoreListRef.once('value', function(snapshot) {
-            var smallList = snapshot.val();
-            var num = 0;
+            var collection = [];
             var tbody = $("#leaderboard tbody");
-            for (var key in smallList) {
-                var tableTurns = smallList[key].turns !== undefined ? smallList[key].turns : '';
-                tbody.append("<tr><td>" + (++num) + "</td><td>" +smallList[key].name + "</td><td>" +
-                    smallList[key].time + "</td><td>" + tableTurns + "</td></tr>");
+            snapshot.forEach(function (el) {
+                var data = el.val();
+                collection.push({name: data.name, time: data.time, turns: data.turns});
+            });
+            collection.sort(function (a, b) {
+               if (a.turns < b.turns) {
+                   return -1;
+               }
+               if (a.turns > b.turns) {
+                   return 1;
+               }
+               return a.time < b.time ? -1 : 1;
+            });
+            for (var key in collection) {
+                tbody.append("<tr>" +
+                    "<td>" + (++key) + "</td>" +
+                    "<td>" + collection[key].name + "</td>" +
+                    "<td>" + collection[key].time + "</td>" +
+                    "<td>" + collection[key].turns + "</td>" +
+                "</tr>");
             }
         });
         contents += "</tbody></table>";
@@ -267,8 +282,19 @@ $(function() {
         var lang = $(this).data("lang");
         var text = lang == 'eng' ? "<p>Your score has been saved.</p>" : "<p>Ваш счет сохранен.</p>";
         var input = $('input[data-lang="' + lang + '"]');
-        var name = input.val().toLowerCase();
-        scoreListRef.push().setWithPriority({ name:name, time: scoreTime, turns: turns}, scoreTime);
-        input.parent().html(text);
+        var name = input.val();
+        var userScoreRef = scoreListRef.child(name.toLocaleLowerCase());
+        userScoreRef.once('value', function(dataSnapshot) {
+            var userData = dataSnapshot.val();
+            if (userData !== undefined) {
+                if (turns <= userData.turns && scoreTime <= userData.time) {
+                    userScoreRef.setWithPriority({ name:name, time: scoreTime, turns: turns}, turns);
+                }
+            }
+            else {
+                userScoreRef.setWithPriority({ name:name, time: scoreTime, turns: turns}, turns);
+            }
+            input.parent().html(text);
+        });
     });
 });

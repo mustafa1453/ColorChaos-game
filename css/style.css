@@ -430,7 +430,7 @@ body .simple-modal .simple-modal-body div.contents table thead {
 }
 
 body .simple-modal .simple-modal-body div.contents table tbody {
-    max-height: 500px;
-    overflow-y:scroll;
+    max-height: 300px;
+    overflow-y: scroll;
     display:block;
 }
