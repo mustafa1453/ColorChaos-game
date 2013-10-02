@@ -120,20 +120,6 @@ $(function() {
             hideHeader: true,
             closeButton: false,
             btn_ok: 'Close',
-            width: 600,
-            model: 'alert',
-            contents: '<div id="save-block"><p data-lang="eng">You win. Our congratulations. You may save your score and time in leaderboard.</p>' +
-                '<p data-lang="rus">Вы победили. Наши поздравления. Вы можете сохранить результат и время в таблицу лидеров</p>' +
-                '<input type="text" placeholder="Name" data-lang="eng"/>' +
-                '<a class="btn btn-inverse save" data-lang="eng">Save</a>' +
-                '<input type="text" placeholder="Имя" data-lang="rus"/>' +
-                '<a class="btn btn-inverse save" data-lang="rus">Сохранить</a></div>'
-        }).showModal();
-        translate();
-        /*$.fn.SimpleModal({
-            hideHeader: true,
-            closeButton: false,
-            btn_ok: 'Close',
             width: 400,
             model: 'alert',
             contents: '<img style="max-height: 200px;" src="img/' + image + '.jpg">' +
@@ -142,7 +128,7 @@ $(function() {
                 '<p data-lang="eng">Number of robed caravans: ' + caravans + '.</p>' +
                 '<p data-lang="rus">Количество ограбленых корованов: ' + caravans + '.</p>'
         }).showModal();
-        translate();*/
+        translate();
     });
 
     $('.rules .btn').click(function(e) {
