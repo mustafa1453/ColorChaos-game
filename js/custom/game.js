@@ -225,29 +225,29 @@ $(function() {
         } return newObj;
     }
 
-    var scoreListRef = new Firebase('https://mustafa1453.firebaseio.com/' + db);
-
     $(".scores div").click(function (e) {
+        var scoreListRef = new Firebase('https://mustafa1453.firebaseio.com/' + db);
         var lang = $(this).data("lang");
         if (lang === "eng") {
-            var contents = "<h3>Leaderboard</h3>" +
-                "<table id=\"leaderboard\"><thead><tr><th>#</th><th>Name</th><th>Time</th>" +
+            var title = size == 14 ? 'Leaderboard small game' : 'Leaderboard big game';
+            var contents = "<h3>" + title + "</h3>" +
+                "<table id=\"leaderboard\"><thead><tr><th>#</th><th>Name</th><th>Time</th><th>Turns</th>" +
                 "</tr></thead><tbody>";
         }
         else {
-            var contents = "<h3>Таблица лидеров</h3>" +
-                "<table id=\"leaderboard\"><thead><tr><th>№</th><th>Имя</th><th>Время</th>" +
+            var title = size == 14 ? 'Таблица лидеров малого поля' : 'Таблица лидеров большого поля';
+            var contents = "<h3>" + title + "</h3>" +
+                "<table id=\"leaderboard\"><thead><tr><th>№</th><th>Имя</th><th>Время</th><th>Ходы</th>" +
                 "</tr></thead><tbody>";
         }
         scoreListRef.once('value', function(snapshot) {
             var smallList = snapshot.val();
-            var num = 1;
-            for (var key in smallList) {
-                num++;
-            }
+            var num = 0;
             var tbody = $("#leaderboard tbody");
             for (var key in smallList) {
-                tbody.prepend("<tr><td>" + (--num) + "</td><td>" +smallList[key].name + "</td><td>" + smallList[key].time + "</td></tr>");
+                var tableTurns = smallList[key].turns !== undefined ? smallList[key].turns : '';
+                tbody.append("<tr><td>" + (++num) + "</td><td>" +smallList[key].name + "</td><td>" +
+                    smallList[key].time + "</td><td>" + tableTurns + "</td></tr>");
             }
         });
         contents += "</tbody></table>";
@@ -263,11 +263,12 @@ $(function() {
     });
 
     $(document).on("click", ".save", function() {
+        var scoreListRef = new Firebase('https://mustafa1453.firebaseio.com/' + db);
         var lang = $(this).data("lang");
         var text = lang == 'eng' ? "<p>Your score has been saved.</p>" : "<p>Ваш счет сохранен.</p>";
         var input = $('input[data-lang="' + lang + '"]');
         var name = input.val().toLowerCase();
-        scoreListRef.push().setWithPriority({ name:name, time:scoreTime }, scoreTime);
+        scoreListRef.push().setWithPriority({ name:name, time: scoreTime, turns: turns}, scoreTime);
         input.parent().html(text);
     });
 });

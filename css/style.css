@@ -389,12 +389,12 @@ input {
     border: 1px solid #cbcbcb;
     color: #777;
     margin: 0 auto;
+    text-align: center;
 }
 
 #leaderboard thead {
     background: #e0e0e0;
     color: #000;
-    text-align: left;
     vertical-align: bottom;
 }
 
@@ -405,10 +405,12 @@ input {
     margin: 0;
     overflow: visible;
     padding: 6px 12px;
+    width: 100px;
 }
 
 #leaderboard td:first-child, #leaderboard th:first-child {
     border-left-width: 0;
+    width: 20px;
 }
 
 #leaderboard tbody tr {
@@ -423,7 +425,12 @@ input {
     text-align: center;
 }
 
-body .simple-modal .simple-modal-body div.contents {
-    overflow-y: scroll;
+body .simple-modal .simple-modal-body div.contents table thead {
+    display:block;
+}
+
+body .simple-modal .simple-modal-body div.contents table tbody {
     max-height: 500px;
+    overflow-y:scroll;
+    display:block;
 }
