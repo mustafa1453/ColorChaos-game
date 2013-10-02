@@ -129,8 +129,6 @@ body {
         inset 0px 0px 0px rgba(163,75,163,0.9);
     margin-right: 3px;
     margin-bottom: 3px;
-    transition:width 5s;
-    -webkit-transition:width 5s;
 }
 
 .colors .color:hover {
