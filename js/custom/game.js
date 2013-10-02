@@ -256,9 +256,10 @@ $(function() {
                }
                return a.time < b.time ? -1 : 1;
             });
+            var num = 1;
             for (var key in collection) {
                 tbody.append("<tr>" +
-                    "<td>" + (++key) + "</td>" +
+                    "<td>" + (num++) + "</td>" +
                     "<td>" + collection[key].name + "</td>" +
                     "<td>" + collection[key].time + "</td>" +
                     "<td>" + collection[key].turns + "</td>" +
